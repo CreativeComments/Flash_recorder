@@ -1,0 +1,85 @@
+<html><head>
+		<script type="text/javascript" src="swfobject.js"></script>
+		<script type="text/javascript">
+            var flashvars = {};
+            flashvars.debug = 'false';
+            flashvars.mirror = 'true';
+            flashvars.recordtime = '5';
+            flashvars.quality = '90';
+            flashvars.filename = 'testje.f4v';
+            //flashvars.fms = 'testje';
+            //flashvars.player = 'true';
+			var params = {};
+			var attributes = {id:"videorecorder",  name:"videorecorder"};
+			//
+			swfobject.embedSWF("VideoRecorder.swf", "flashContent", "620", "350", "11.0.0", null, flashvars, params, attributes);
+		</script><style type="text/css" media="screen">#flashContent {visibility:hidden}</style>
+	</head>
+	<body style="">
+		<object type="application/x-shockwave-flash" id="videorecorder" name="videorecorder" data="VideoRecorder.swf" width="620" height="350"><param name="flashvars" value="debug=false&amp;mirror=true&amp;recordtime=5&amp;quality=90&amp;filename=testje.f4v"></object>
+		<div>
+			<a href="#" id="startrecording">start recording</a>
+			<a href="#" id="stoprecording">stop recording</a>
+			<a href="#" id="getfilename">get filename</a>
+			<!--<br />
+			<a href="#" id="startplaying">start playing</a>
+			<a href="#" id="stopplaying">stop playing</a>-->
+			
+			<a href="#" id="hasWebcam">hasWebcam</a>
+			<a href="#" id="isWebCamMuted">isWebCamMuted</a>
+		</div>
+
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript">
+			var flash;
+
+			$(document).ready(function(){
+				console.log('ready');
+
+				flash = document.getElementById("videorecorder");
+
+				$('a#startrecording').click(function(e){
+					flash.startRecording();
+					e.preventDefault();
+				});
+				$('a#stoprecording').click(function(e){
+					flash.stopRecording();
+					e.preventDefault();
+				});
+				$('a#getfilename').click(function(e){
+					flash.getFilename();
+					e.preventDefault();
+				});
+
+				$('a#startplaying').click(function(e){
+					flash.startPlaying();
+					e.preventDefault();
+				});
+
+				$('a#stopplaying').click(function(e){
+					flash.stopPlaying();
+					e.preventDefault();
+				});
+				$('a#hasWebcam').click(function(e){
+					console.log(flash.hasWebcam());
+					e.preventDefault();
+				});
+				$('a#isWebCamMuted').click(function(e){
+					console.log(flash.isWebCamMuted());
+					e.preventDefault();
+				});
+
+				
+			});
+
+
+			function showRecorderFilename(filename){
+				console.log('filename',filename);
+			}
+
+			function recorderStatus(status){
+				console.log('status',status);
+			}
+		</script>
+	
+</body></html>
